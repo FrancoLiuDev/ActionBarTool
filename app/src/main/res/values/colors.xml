@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#ee000000</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="colorMenuItemBackgound">@color/colortransparent</color>
+    <color name="colorMenuItemDebug">#ff00ee00</color>
+
+
+    <color name="colorActionBarBackgound">@color/colortransparentWhite</color>
+    <color name="colorActionBarDebug">#ffcc0000</color>
+
+
+    <color name="colorActionBarTitle">@color/colorTitileWhite</color>
+    <color name="colorTitileWhite">#eeffffff</color>
+
+
+
+    <color name="colortransparent">#00ffffff</color>
+    <color name="colortransparentWhite">#aaffffff</color>
+
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="fill_horizontal"
+
+    android:background="@color/colorActionBarBackgound">
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+
+
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:background="@color/colorMenuItemBackgound"
+        android:id="@+id/btn_left" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/btn_left"
+        android:textSize="22dp"
+        android:textColor="@color/colorActionBarTitle"
+        android:background="@color/colorMenuItemBackgound"
+        android:clickable="false"
+        android:enabled="false"
+        android:id="@+id/textView" />
+
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+
+        android:layout_centerVertical="true"
+        android:background="@color/colorMenuItemBackgound"
+        android:layout_toLeftOf="@+id/btn_right"
+        android:id="@+id/btn_right2" />
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:background="@color/colorMenuItemBackgound"
+        android:layout_centerVertical="true"
+        android:id="@+id/btn_right" />
+
+
+
+
+</RelativeLayout>
