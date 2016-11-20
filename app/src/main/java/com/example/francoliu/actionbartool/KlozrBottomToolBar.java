@@ -1,5 +1,6 @@
 package com.example.francoliu.actionbartool;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -14,12 +15,13 @@ import android.widget.RelativeLayout;
 
 public class KlozrBottomToolBar extends RelativeLayout implements  View.OnClickListener {
 
-    final boolean debugMode=true;
+    boolean debugMode=false;
 
     public interface ButtomBarButtonEvent{
         public void onButtonClicked(View view);
 
     }
+
 
     private ButtomBarButtonEvent Event;
 
@@ -30,17 +32,28 @@ public class KlozrBottomToolBar extends RelativeLayout implements  View.OnClickL
     public void setEventListener(ButtomBarButtonEvent event) {
         Event = event;
     }
-    static public KlozrBottomToolBar CreateNewToolBar(Context context)
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
+    }
+
+    static public KlozrBottomToolBar CreateNewToolBar(Context context,int resource)
     {
         //inflator.inflate(R.id.bottom_tool_layout, null);
-        return  (KlozrBottomToolBar)LayoutInflater.from(context).inflate(R.layout.bottom_tool_bar_view,null);
+        return  (KlozrBottomToolBar)LayoutInflater.from(context).inflate(resource,null);
+    }
+
+    public void setResourceId(Context context,int id)
+    {
+        //inflator.inflate(R.id.bottom_tool_layout, null);
+        LayoutInflater.from(context).inflate(R.layout.bottom_tool_bar_view,null);
     }
 
     public RelativeLayout.LayoutParams getInitLayoutStyle()
     {
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        //lp.setPadding(0,10,0,10);
+
 
         return  lp;
     }
@@ -49,19 +62,11 @@ public class KlozrBottomToolBar extends RelativeLayout implements  View.OnClickL
         super(context );
     }
 
-    public void CreateBottomBar()
-    {
-        for(int index = 0; index<((ViewGroup)this).getChildCount(); ++index) {
-            View nextChild = ((ViewGroup)this).getChildAt(index);
-            nextChild.setOnClickListener(this);
-
-
-        }
-
-    }
 
     public void InitBottomBar()
     {
+
+
         if (debugMode)
            this.setBackgroundResource(R.color.colorActionBarDebug);
 
@@ -99,5 +104,49 @@ public class KlozrBottomToolBar extends RelativeLayout implements  View.OnClickL
         }
         Event.onButtonClicked(view);
         return;
+    }
+
+    public static class Builder {
+
+        KlozrBottomToolBar KlozrBottomToolBar;
+        Context context;
+
+        public Builder(Context context,int resource) {
+            this.KlozrBottomToolBar = KlozrBottomToolBar.CreateNewToolBar(context,resource);
+            this.context=context;
+        }
+
+        public Builder setResourceId(int resourceId)
+        {
+            this.KlozrBottomToolBar.setResourceId(this.context,resourceId);
+            return this;
+        }
+
+        public Builder setParent(ViewGroup View)
+        {
+            View.addView(KlozrBottomToolBar,KlozrBottomToolBar.getInitLayoutStyle());
+            return this;
+        }
+
+        public Builder setDebugMode(boolean mode)
+        {
+            KlozrBottomToolBar.setDebugMode(mode);
+            return this;
+        }
+        public Builder setToolBarListener(ButtomBarButtonEvent event)
+        {
+            KlozrBottomToolBar.setEventListener(event);
+            return this;
+        }
+
+
+
+        public KlozrBottomToolBar build() {
+
+            KlozrBottomToolBar.InitBottomBar();
+            return KlozrBottomToolBar;
+        }
+
+
     }
 }

@@ -29,12 +29,16 @@ public class KlozrActionBar implements View.OnClickListener {
     private AppCompatActivity activity;
     private ActionButtonEvent Event;
 
-    final boolean debugMode=false;
+     boolean debugMode=false;
 
     public KlozrActionBar(AppCompatActivity activity,int resource)
     {
         this.activity=activity;
         this.MenuResourceID=resource;
+    }
+
+    public void setDebugMode(boolean debugMode) {
+        this.debugMode = debugMode;
     }
 
     public void setEventListener(ActionButtonEvent event) {
@@ -70,6 +74,7 @@ public class KlozrActionBar implements View.OnClickListener {
 
         return view;
     }
+
     public void  initActionBarViewListener(View view){
 
         for(int index=0; index<((ViewGroup)view).getChildCount(); ++index) {
@@ -82,10 +87,6 @@ public class KlozrActionBar implements View.OnClickListener {
                 // do what you want with imageView
             }
         }
-
-
-
-
 
     }
 
@@ -124,6 +125,7 @@ public class KlozrActionBar implements View.OnClickListener {
         //actionBar.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor("#80000000")));
     }
 
+
     private void showActionBar2()
     {
         ActionBar actionBar = activity.getSupportActionBar();
@@ -156,5 +158,38 @@ public class KlozrActionBar implements View.OnClickListener {
 
         Event.onActionButtonClicked(view);
         return;
+    }
+
+
+
+    public static class Builder {
+
+        AppCompatActivity activity;
+        KlozrActionBar klozrActionBar;
+        Context context;
+
+        public Builder(AppCompatActivity appCompatActivity,int resource) {
+            klozrActionBar =new KlozrActionBar(appCompatActivity,resource);
+
+        }
+
+        public Builder setEventListener(ActionButtonEvent event)
+        {
+            klozrActionBar.setEventListener(event);
+            return this;
+        }
+
+        public Builder setDebugMode(boolean mode)
+        {
+            klozrActionBar.setDebugMode(mode);
+            return this;
+        }
+        public KlozrActionBar build() {
+
+            klozrActionBar.CreateActionBar();
+            return klozrActionBar;
+        }
+
+
     }
 }
